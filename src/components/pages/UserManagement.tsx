@@ -1,12 +1,22 @@
-import { memo, ReactElement, useEffect } from "react";
-import { Center, Flex, Spinner, Wrap, WrapItem } from "@chakra-ui/react";
-import { UserCard } from "../organisms/UserCard/UserCard";
+import { memo, ReactElement, useCallback, useEffect } from "react";
+import { UserCard } from "../organisms/user/UserCard";
 import { useAllUsers } from "../hooks/useAllUsers";
+import {
+  Center,
+  Spinner,
+  useDisclosure,
+  Wrap,
+  WrapItem,
+} from "@chakra-ui/react";
+import { UserDitailModal } from "../organisms/user/UserDitailModal";
 
 export const UserManagement = memo((): ReactElement => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { getUsers, users, loading } = useAllUsers();
 
   useEffect(() => getUsers(), []);
+
+  const onClickUser = useCallback(() => onOpen(), []);
 
   return (
     <>
@@ -22,11 +32,13 @@ export const UserManagement = memo((): ReactElement => {
                 imageUrl="https://source.unsplash.com/random"
                 userName={user.username}
                 fullName={user.name}
+                onClickUser={onClickUser}
               />
             </WrapItem>
           ))}
         </Wrap>
       )}
+      <UserDitailModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 });

@@ -5,10 +5,11 @@ type Props = {
   imageUrl: string;
   userName: string;
   fullName: string;
+  onClickUser: () => void;
 };
 
 export const UserCard = memo((props: Props): ReactElement => {
-  const { imageUrl, userName, fullName } = props;
+  const { imageUrl, userName, fullName, onClickUser } = props;
   return (
     <Box
       w="260px"
@@ -18,6 +19,7 @@ export const UserCard = memo((props: Props): ReactElement => {
       shadow="md"
       p={4}
       _hover={{ cursor: "pointer", opacity: 0.8 }}
+      onClick={onClickUser}
     >
       <Stack textAlign="center">
         <Image
