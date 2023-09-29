@@ -1,7 +1,7 @@
 import { ChangeEvent, memo, ReactElement, useState } from "react";
 import { Box, Divider, Flex, Heading, Input, Stack } from "@chakra-ui/react";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Login = memo((): ReactElement => {
   const { login, loading } = useAuth();
