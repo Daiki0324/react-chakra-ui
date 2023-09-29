@@ -15,7 +15,7 @@ import { UserDitailModal } from "../organisms/user/UserDitailModal";
 
 export const UserManagement = memo((): ReactElement => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { getUsers, users, loading } = useAllUsers();
+  const { getUsers, loading, users, setUsers } = useAllUsers();
   const { onSelectUser, selectedUser } = useSelectUser();
   const { loginUser } = useLoginUser();
 
@@ -49,7 +49,14 @@ export const UserManagement = memo((): ReactElement => {
           ))}
         </Wrap>
       )}
-      <UserDitailModal isOpen={isOpen} onClose={onClose} user={selectedUser} />
+      <UserDitailModal
+        isOpen={isOpen}
+        isAdmin={loginUser?.isAdmin}
+        users={users}
+        selectedUser={selectedUser}
+        onClose={onClose}
+        setUsers={setUsers}
+      />
     </>
   );
 });

@@ -21,5 +21,5 @@ export const useAllUsers = () => {
         setLoading(false);
       });
   }, []);
-  return { getUsers, loading, users };
+  return { getUsers, loading, users, setUsers };
 };
