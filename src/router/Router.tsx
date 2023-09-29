@@ -5,10 +5,11 @@ import { Login } from "../components/pages/Login";
 import { homeRoutes } from "./HomeRoutes";
 import { Page404 } from "../components/pages/Page404";
 import { HeaderLayout } from "../components/templates/HeaderLayout";
+import { LoginUserProvider } from "../providers/LoginUserProvider";
 
-export const Router = memo(
-  (): ReactElement => {
-    return (
+export const Router = memo((): ReactElement => {
+  return (
+    <LoginUserProvider>
       <Routes>
         <Route path="/" element={<Login />} index />
         <Route path="/home" element={<Outlet />}>
@@ -22,6 +23,6 @@ export const Router = memo(
         </Route>
         <Route path="*" element={<Page404 />} />
       </Routes>
-    );
-  }
-);
+    </LoginUserProvider>
+  );
+});
