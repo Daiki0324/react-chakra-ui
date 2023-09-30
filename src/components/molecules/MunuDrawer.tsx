@@ -13,6 +13,7 @@ type Props = {
   onClickHome: () => void;
   onClickUserManagement: () => void;
   onClickSetting: () => void;
+  onClickLogout: () => void;
 };
 
 export const MunuDrawer = memo((props: Props): ReactElement => {
@@ -22,6 +23,7 @@ export const MunuDrawer = memo((props: Props): ReactElement => {
     onClickHome,
     onClickUserManagement,
     onClickSetting,
+    onClickLogout
   } = props;
   return (
     <Drawer placement="left" size="xs" onClose={onClose} isOpen={isOpen}>
@@ -36,6 +38,9 @@ export const MunuDrawer = memo((props: Props): ReactElement => {
             </Button>
             <Button onClick={onClickSetting} w="100%">
               設定
+            </Button>
+            <Button onClick={onClickLogout} w="100%">
+              ログアウト
             </Button>
           </DrawerBody>
         </DrawerContent>

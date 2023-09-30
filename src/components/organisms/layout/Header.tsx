@@ -6,6 +6,7 @@ import {
   Flex,
   Heading,
   Link,
+  Stack,
   useDisclosure,
 } from "@chakra-ui/react";
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
@@ -23,6 +24,9 @@ export const Header = memo((): ReactElement => {
   }, []);
   const onClickSetting = useCallback(() => {
     navigate("/home/setting"), onClose();
+  }, []);
+  const onClickLogout = useCallback(() => {
+    navigate("/"), onClose();
   }, []);
 
   return (
@@ -52,10 +56,17 @@ export const Header = memo((): ReactElement => {
           flexGrow={2}
           display={{ base: "none", md: "flex" }}
         >
-          <Box pr={4}>
-            <Link onClick={onClickUserManagement}>ユーザー一覧</Link>
-          </Box>
-          <Link onClick={onClickSetting}>設定</Link>
+          <Stack direction="row" spacing={4} align="center">
+            <Box>
+              <Link onClick={onClickUserManagement}>ユーザー一覧</Link>
+            </Box>
+            <Box>
+              <Link onClick={onClickSetting}>設定</Link>
+            </Box>
+            <Box>
+              <Link onClick={onClickLogout}>ログアウト</Link>
+            </Box>
+          </Stack>
         </Flex>
         <MenuIconButton onOpen={onOpen} />
       </Flex>
@@ -65,6 +76,7 @@ export const Header = memo((): ReactElement => {
         onClickHome={onClickHome}
         onClickUserManagement={onClickUserManagement}
         onClickSetting={onClickSetting}
+        onClickLogout={onClickLogout}
       />
     </>
   );
